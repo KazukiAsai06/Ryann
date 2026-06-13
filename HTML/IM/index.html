@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="profile-card">
+        <div class="profile-info">
+          <h1>Student Dashboard</h1>
+
+          <div class="info-row">
+            <label>Name:</label>
+            <input type="text" id="studentName" placeholder="Enter your name" />
+          </div>
+
+          <div class="info-row">
+            <label>Student No:</label>
+            <input
+              type="text"
+              id="studentNo"
+              placeholder="Enter student number"
+            />
+          </div>
+
+          <div class="info-row">
+            <label>Section:</label>
+            <input
+              type="text"
+              id="studentSection"
+              placeholder="Enter section"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Subjects & Teachers</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Teacher</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Web Development</td>
+              <td>Prof. Noda</td>
+            </tr>
+
+            <tr>
+              <td>Networking Administration</td>
+              <td>Prof. Cuajunco</td>
+            </tr>
+
+            <tr>
+              <td>PATHFIT 4</td>
+              <td>Prof. Talicol</td>
+            </tr>
+
+            <tr>
+              <td>Human Computer Interaction</td>
+              <td>Prof. Angala</td>
+            </tr>
+            <tr>
+              <td>Systems Administration and Maintenance</td>
+              <td>Prof. Angala</td>
+            </tr>
+            <tr>
+              <td>Information Management</td>
+              <td>Prof. Evangelista</td>
+            </tr>
+            <tr>
+              <td>Object Oriented Programming</td>
+              <td>Prof. Togonon</td>
+            </tr>
+            <tr>
+              <td>Business Intelligence</td>
+              <td>Prof. Evangelista</td>
+            </tr>
+            <tr>
+              <td>Quantitative Methods w/Modeling and Simulation</td>
+              <td>Prof. Noda</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="button-area">
+          <button id="presentBtn" class="present-btn">PRESENT</button>
+
+          <p id="status"></p>
+        </div>
+      </div>
+    </div>
+
+    <button class="logout-btn" onclick="logout()">LOG OUT</button>
+
+    <script>
+      // Student Information
+      const studentName = document.getElementById("studentName");
+      const studentNo = document.getElementById("studentNo");
+      const studentSection = document.getElementById("studentSection");
+
+      // Auto Save Student Info
+      studentName.addEventListener("input", () => {
+        localStorage.setItem("studentName", studentName.value);
+      });
+
+      studentNo.addEventListener("input", () => {
+        localStorage.setItem("studentNo", studentNo.value);
+      });
+
+      studentSection.addEventListener("input", () => {
+        localStorage.setItem("studentSection", studentSection.value);
+      });
+
+      // Load Saved Info
+      studentName.value = localStorage.getItem("studentName") || "";
+      studentNo.value = localStorage.getItem("studentNo") || "";
+      studentSection.value = localStorage.getItem("studentSection") || "";
+
+      // Attendance
+      const presentBtn = document.getElementById("presentBtn");
+      const statusText = document.getElementById("status");
+
+      presentBtn.addEventListener("click", () => {
+        statusText.innerHTML = "✅ RECORDED";
+        presentBtn.disabled = true;
+      });
+
+      // Logout
+      function logout() {
+        window.location.href = "login.html";
+      }
+    </script>
+  </body>
+</html>
